@@ -4,7 +4,7 @@ from scrapy_playwright.page import PageMethod
 
 class N11Spider(scrapy.Spider):
     name = "n11"
-    allowed_domains = ["www.n11.com"]
+    allowed_domains = ["n11.com"]
     start_urls = ["https://www.n11.com"]
 
     pos_models = [
@@ -38,11 +38,15 @@ class N11Spider(scrapy.Spider):
     }
 
     def start_requests(self):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         for model in self.pos_models:
             search_url = self.get_search_url(self.start_urls[0], model) # Use the base url for trendyol
             self.logger.info(search_url)
             yield scrapy.Request(
                 search_url,
+                headers=headers,
                 meta={
                     "playwright": True,
                     "playwright_page_methods": [PageMethod("wait_for_load_state", "domcontentloaded")],

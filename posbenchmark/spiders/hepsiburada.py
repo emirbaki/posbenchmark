@@ -5,7 +5,7 @@ from scrapy_playwright.page import PageMethod
 class HepsiburadaSpider(scrapy.Spider):
     name = "hepsiburada"
     allowed_domains = ["hepsiburada.com"]
-    start_urls = ["https://hepsiburada.com"]
+    start_urls = ["https://www.hepsiburada.com"]
 
     pos_models = [
         "Beko 300 TR",

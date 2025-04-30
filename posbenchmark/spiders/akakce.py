@@ -5,7 +5,7 @@ from scrapy_playwright.page import PageMethod
 class AkakceSpider(scrapy.Spider):
     name = "akakce"
     allowed_domains = ["akakce.com"]
-    start_urls = ["https://akakce.com"]
+    start_urls = ["https://www.akakce.com"]
 
     pos_models = [
         "Beko 300 TR",
