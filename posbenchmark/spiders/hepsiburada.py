@@ -41,7 +41,7 @@ class HepsiburadaSpider(scrapy.Spider):
         #     "rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
         #     "rotating_proxies.middlewares.BanDetectionMiddleware": 620,
         # },
-        "ROBOTSTXT_OBEY": True,
+        "ROBOTSTXT_OBEY": False,
         "DOWNLOAD_DELAY": 2,  # 2-second delay between requests
         "CONCURRENT_REQUESTS_PER_DOMAIN": 1,  # Limit concurrent requests
     }
