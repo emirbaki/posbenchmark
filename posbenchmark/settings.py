@@ -118,6 +118,7 @@ RANDOM_DELAY= 1
 # RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 403, 404, 429]  # Retry these status codes
 # Enable logging for debugging (optional)
 LOG_LEVEL = "INFO"
+CLOSESPIDER_TIMEOUT = 180 # Stop after 60 seconds
 
 
 # USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
