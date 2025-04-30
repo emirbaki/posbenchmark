@@ -38,8 +38,11 @@ class TrendyolPriceSpider(scrapy.Spider):
 
     def start_requests(self):
         headers = {
-            "Referer": self.start_urls[0],  # Or the URL of the page linking to the search
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+            "Referer": "https://www.trendyol.com",
+            "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
         }
+
         for model in self.pos_models:
             search_url = self.get_search_url(self.start_urls[0], model) # Use the base url for trendyol
             self.logger.info(search_url)

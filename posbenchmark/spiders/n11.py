@@ -4,8 +4,8 @@ from scrapy_playwright.page import PageMethod
 
 class N11Spider(scrapy.Spider):
     name = "n11"
-    allowed_domains = ["n11.com"]
-    start_urls = ["https://n11.com"]
+    allowed_domains = ["www.n11.com"]
+    start_urls = ["https://www.n11.com"]
 
     pos_models = [
         "Beko 300 TR",
