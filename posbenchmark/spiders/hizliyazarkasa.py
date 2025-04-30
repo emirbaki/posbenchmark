@@ -71,8 +71,8 @@ class hizliyazarkasaSpider(scrapy.Spider):
         # Extract product titles and prices
         for model in self.pos_models:
             for product in response.xpath("//div[@class='container th-container']/div/div/div[@class = 'project-grid']"):
-                title = f"{product.css("div.box-content").xpath(".//h3/a/text()").get()}" # Adjust the selector for the title
-                price_text = f"{product.css("div.box-content").css("span.price::text").get()}"  # Adjust the selector for the price
+                title = f"{product.css('div.box-content').xpath('.//h3/a/text()').get()}" # Adjust the selector for the title
+                price_text = f"{product.css('div.box-content').css('span.price::text').get()}"  # Adjust the selector for the price
                 self.logger.info(title.lower())
 
                 if not title or not price_text or title.lower() == "none":

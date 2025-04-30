@@ -71,8 +71,8 @@ class PazaramaSpider(scrapy.Spider):
         # Extract product titles and prices
         for product in response.css("div.product-card.bg-white.relative"):
             
-            title = f"{product.xpath(".//div[@data-testid='product-card-title']/text()").get()}" # Adjust the selector for the title
-            price_text = f"{product.css("div.leading-tight.font-semibold.text-huge::text").get()}"  # Adjust the selector for the price
+            title = f"{product.xpath('.//div[@data-testid=\"product-card-title\"]/text()').get()}" # Adjust the selector for the title
+            price_text = f"{product.css('div.leading-tight.font-semibold.text-huge::text').get()}"  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             if not title or not price_text or title.lower() == "none":

@@ -87,10 +87,10 @@ class AmazonSpider(scrapy.Spider):
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.xpath(".//h2/span/text()").get()}" # Adjust the selector for the title
-            price_text = f"{product.xpath(".//span[contains(@class, 'a-price')]/span/text()").get()}"  # Adjust the selector for the price
+            title = f"{product.xpath('.//h2/span/text()').get()}" # Adjust the selector for the title
+            price_text = f"{product.xpath('.//span[contains(@class, \"a-price\")]/span/text()').get()}"  # Adjust the selector for the price
             self.logger.info(title.lower())
-            discounted_price_text = f"{product.xpath(".//span[contains(@class, 'a-price')]/span/text()").get()}"
+            discounted_price_text = f"{product.xpath('.//span[contains(@class, \"a-price\")]/span/text()').get()}"
 
             if discounted_price_text is not None:
                 self.logger.info(f"bağırma lan: {discounted_price_text}")

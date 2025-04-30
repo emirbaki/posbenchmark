@@ -78,7 +78,7 @@ class TrendyolPriceSpider(scrapy.Spider):
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.css("span.prdct-desc-cntnr-ttl::text").get()} {product.css("span.prdct-desc-cntnr-name.hasRatings::text").get()} {subtitle}"  # Adjust the selector for the title
+            title = f"{product.css('span.prdct-desc-cntnr-ttl::text').get()} {product.css('span.prdct-desc-cntnr-name.hasRatings::text').get()} {subtitle}"  # Adjust the selector for the title
             price_text = product.css("div.price-item.discounted::text").get()  # Adjust the selector for the price
             self.logger.info(title.lower())
 

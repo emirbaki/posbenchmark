@@ -75,8 +75,8 @@ class N11Spider(scrapy.Spider):
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.xpath(".//a/h3/text()").get()}" # Adjust the selector for the title
-            price_text = f"{product.css(".newPrice.cPoint.priceEventClick").xpath(".//ins/text()").get()}"  # Adjust the selector for the price
+            title = f"{product.xpath('.//a/h3/text()').get()}" # Adjust the selector for the title
+            price_text = f"{product.css('.newPrice.cPoint.priceEventClick').xpath('.//ins/text()').get()}"  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             if not title or not price_text or title.lower() == "none":

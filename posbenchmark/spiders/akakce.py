@@ -75,8 +75,8 @@ class AkakceSpider(scrapy.Spider):
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.xpath(".//a/@title").get()}" # Adjust the selector for the title
-            price_text = f"{product.xpath(".//a/span/span[@class='pb_v8']/span/text()").get()}"  # Adjust the selector for the price
+            title = f"{product.xpath('.//a/@title').get()}" # Adjust the selector for the title
+            price_text = f"{product.xpath('.//a/span/span[@class=\"pb_v8\"]/span/text()').get()}"  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             if not title or not price_text or title.lower() == "none":
