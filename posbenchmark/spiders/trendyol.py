@@ -73,13 +73,16 @@ class TrendyolPriceSpider(scrapy.Spider):
         # Extract product titles and prices
         for product in response.css(".p-card-chldrn-cntnr.card-border"):
             
-            subtitle = product.css("div.product-desc-sub-text::text").get()
+            subtitle = str(product.css("div.product-desc-sub-text::text").get())
             if subtitle is not None:
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.css('span.prdct-desc-cntnr-ttl::text').get()} {product.css('span.prdct-desc-cntnr-name.hasRatings::text').get()} {subtitle}"  # Adjust the selector for the title
-            price_text = product.css("div.price-item.discounted::text").get()  # Adjust the selector for the price
+            title = str(product.css('span.prdct-desc-cntnr-ttl::text').get())
+            t2 =    str(product.css('span.prdct-desc-cntnr-name.hasRatings::text').get()) 
+            t3 = subtitle  # Adjust the selector for the title
+            title = title + ' ' + t2 + ' '+ t3
+            price_text = str(product.css("div.price-item.discounted::text").get())  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             # subtitle = product.css("div.product-desc-sub-text::text").get()

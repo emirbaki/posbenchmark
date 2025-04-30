@@ -70,13 +70,13 @@ class AkakceSpider(scrapy.Spider):
         # Extract product titles and prices
         for product in response.xpath("//ul[@id='APL']/li"):
             
-            subtitle = product.css("div.product-desc-sub-text::text").get()
+            subtitle = str(product.css("div.product-desc-sub-text::text").get())
             if subtitle is not None:
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.xpath('.//a/@title').get()}" # Adjust the selector for the title
-            price_text = f"{product.xpath('.//a/span/span[@class=\"pb_v8\"]/span/text()').get()}"  # Adjust the selector for the price
+            title = str(product.xpath('.//a/@title').get()) # Adjust the selector for the title
+            price_text = str(product.xpath('.//a/span/span[@class=\"pb_v8\"]/span/text()').get())  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             if not title or not price_text or title.lower() == "none":

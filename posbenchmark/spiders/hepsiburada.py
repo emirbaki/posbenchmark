@@ -82,15 +82,15 @@ class HepsiburadaSpider(scrapy.Spider):
         # Extract product titles and prices
         for product in response.xpath("//li[contains(@class, 'productListContent')]"):
             
-            subtitle = product.css("div.product-desc-sub-text::text").get()
+            subtitle = str(product.css("div.product-desc-sub-text::text").get())
             if subtitle is not None:
                 subtitle = subtitle
             else:
                 subtitle = ""
-            title = f"{product.xpath('.//div/div[contains(@class, \"productCard\")]/h2/span/text()').get()}" # Adjust the selector for the title
-            price_text = f"{product.xpath('.//div[starts-with(@data-test-id, \"final-price\")]/text()').get()}"  # Adjust the selector for the price
+            title = str(product.xpath('.//div/div[contains(@class, \"productCard\")]/h2/span/text()').get()) # Adjust the selector for the title
+            price_text = str(product.xpath('.//div[starts-with(@data-test-id, \"final-price\")]/text()').get())  # Adjust the selector for the price
             self.logger.info(title.lower())
-            discounted_price_text = f"{product.xpath('.//div[starts-with(@data-test-id, \"final-price\")]/text()').get()}"
+            discounted_price_text = str(product.xpath('.//div[starts-with(@data-test-id, \"final-price\")]/text()').get())
 
             if discounted_price_text is not None:
                 self.logger.info(f"bağırma lan: {discounted_price_text}")
