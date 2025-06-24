@@ -120,10 +120,10 @@ RANDOM_DELAY= 1
 LOG_LEVEL = "INFO"
 CLOSESPIDER_TIMEOUT = 180 # Stop after 60 seconds
 
-# DOWNLOADER_MIDDLEWARES = {
-#    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-#    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
-# }
+DOWNLOADER_MIDDLEWARES = {
+   'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+   'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+}
 
 # ROTATING_PROXY_LIST = [
 #     '185.200.38.98:1080',
