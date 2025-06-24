@@ -120,16 +120,16 @@ RANDOM_DELAY= 1
 LOG_LEVEL = "INFO"
 CLOSESPIDER_TIMEOUT = 180 # Stop after 60 seconds
 
-DOWNLOADER_MIDDLEWARES = {
-   'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-   'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+#    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+# }
 
-ROTATING_PROXY_LIST = [
-    '185.200.38.98:1080',
-    '95.9.218.176:3310'
-    # ücretli ya da güvenilir proxy’leri buraya ekle
-]
+# ROTATING_PROXY_LIST = [
+#     '185.200.38.98:1080',
+#     '95.9.218.176:3310'
+#     # ücretli ya da güvenilir proxy’leri buraya ekle
+# ]
 
 # USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
 

@@ -20,7 +20,8 @@ class TrendyolPriceSpider(scrapy.Spider):
         "Ingenico IDE280",
         "Verifone VX 520",
         "Hugin N910",
-        "Xiaomi - Sunmi P2"
+        "Xiaomi - Sunmi P2",
+        "PAX A910SF"
     ]
 
     custom_settings = {
@@ -96,7 +97,7 @@ class TrendyolPriceSpider(scrapy.Spider):
             if price is None:
                 continue
             badwords = ['pil', 'kablo', 'ekran', 'kılıf', 'kapağı' , 'kapak', 'pinpad','pınpad','pinped','yazarkasa pi̇npad','sehpa', 'rulo', 'çanta', 'merdane' , 'entegrasyon', 'şarj', 'adaptör'
-                        ,'pencil' , 'pencıl' , 'kalem', 'ödeal', 'odeal']
+                        ,'pencil' , 'pencıl' , 'kalem', 'ödeal', 'odeal', 'stand', 'masaüstü', 'base']
             truefalselist = [word in title.lower() for word in badwords]
             self.logger.info(f'niye true geliyorum bilmiyorum: {truefalselist}')
             flagged_as_bad = any(truefalselist)

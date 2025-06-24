@@ -21,7 +21,8 @@ class AkakceSpider(scrapy.Spider):
         "Ingenico IDE280",
         "Verifone VX 520",
         "Hugin N910",
-        "Xiaomi - Sunmi P2"
+        "Xiaomi - Sunmi P2",
+        "PAX A910SF"
     ]
 
     custom_settings = {
@@ -88,7 +89,7 @@ class AkakceSpider(scrapy.Spider):
             if price is None:
                 continue
             badwords = ['pil', 'kablo', 'ekran', 'kılıf', 'kapağı' , 'kapak', 'pinpad','pınpad','pinped','sehpa', 'rulo', 'çanta', 'merdane', 'entegrasyon', 'şarj' , 'adaptör', 'pencil' , 'pencıl' , 'kalem',
-                        'ödeal', 'odeal']
+                        'ödeal', 'odeal', 'stand', 'masaüstü', 'base']
             truefalselist = [word in title.lower() for word in badwords]
             flagged_as_bad = any(truefalselist)
             # Filter products based on price and title

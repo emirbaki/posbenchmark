@@ -8,7 +8,8 @@ class ikasaSpider(scrapy.Spider):
     start_urls = ["https://ikasa.com.tr"]
 
     pos_models = [
-        "Move/5000 F"
+        "Move/5000 F",
+        "Pax A910SF"
     ]
 
     custom_settings = {
@@ -44,7 +45,7 @@ class ikasaSpider(scrapy.Spider):
             )
 
     def get_search_url(self, base_url, model):
-        return f"{base_url}/Product/SearchProduct"
+        return f"{base_url}/kategoriler/?c=6"
 
     async def parse(self, response):
         if response.status != 200:  # Skip non-200 responses
@@ -55,10 +56,10 @@ class ikasaSpider(scrapy.Spider):
         site = response.meta["site"]
         search_url = response.meta["search_url"]
         # Extract product titles and prices
-        for product in response.css("div.product-box"):
+        for product in response.xpath('//div[contains(@class, "product-item")]'):
             
-            title = str(product.css('div.product-name-area').xpath(".//h5/text()").get()) # Adjust the selector for the title
-            price_text = str(product.css('span.price.no-bottom-margin::text').get())  # Adjust the selector for the price
+            title = str(product.xpath('//div[contains(@class, "product-title")]').xpath('.//div[contains(@class, "title")]/text()').get()) # Adjust the selector for the title
+            price_text = str(product.xpath('//div[contains(@class, "price")]').xpath('.//div[contains(@class, "title")]/text()').get())  # Adjust the selector for the price
             self.logger.info(title.lower())
 
             if not title or not price_text or title.lower() == "none":
@@ -70,13 +71,13 @@ class ikasaSpider(scrapy.Spider):
          
             if price is None:
                 continue
-            badwords = ['pil', 'kablo', 'ekran', 'kılıf', 'kapağı' , 'kapak', 'pinpad','pınpad','pinped','sehpa', 'rulo', 'çanta', 'merdane', 'entegrasyon', 'şarj', 'adaptör']
+            badwords = ['pil', 'kablo', 'ekran', 'kılıf', 'kapağı' , 'kapak', 'pinpad','pınpad','pinped','sehpa', 'rulo', 'çanta', 'merdane', 'entegrasyon', 'şarj', 'adaptör', 'stand', 'masaüstü', 'base']
             truefalselist = [word in title.lower() for word in badwords]
             flagged_as_bad = any(truefalselist)
             # Filter products based on price and title
             if (price > 3000 and ("pos" in title.lower() or model.lower() in title.lower())) and not flagged_as_bad:
                 yield {
-                    "Model": "Ingenico Move 5000F",
+                    "Model": model,
                     "Website": site,
                     "Title": title.strip(),
                     "Price (TL)": price,
@@ -85,7 +86,7 @@ class ikasaSpider(scrapy.Spider):
     def parse_price(self, price_text):
         # Clean the price text (remove currency symbols, commas, etc.)
         try:
-            price_text = price_text.replace("TL", "").replace(".", "").replace(",", ".").strip()
+            price_text = price_text.replace("₺", "").replace("TL", "").replace(",", ".").strip()
             return float(price_text)
         except (ValueError, AttributeError):
             return None

@@ -21,7 +21,8 @@ class HepsiburadaSpider(scrapy.Spider):
         "Ingenico IDE280",
         "Verifone VX 520",
         "Hugin N910",
-        "Xiaomi - Sunmi P2"
+        "Xiaomi - Sunmi P2",
+        "PAX A910SF"
     ]
 
     custom_settings = {
@@ -105,7 +106,8 @@ class HepsiburadaSpider(scrapy.Spider):
                 continue
             badwords = ['pil', 'kablo', 'ekran', 'kılıf', 'kapağı' , 'kapak', 'pinpad','pınpad',
                         'pinped','sehpa', 'rulo', 'çanta', 'merdane' , 'entegrasyon', 'şarj' , 'adaptör'
-                        , 'tv' , 'pro', 'lite' , 'note', 'kamera', 'güvenlik', 'gb', 'pencil' , 'pencıl' , 'kalem', 'ödeal', 'odeal']
+                        , 'tv' , 'pro', 'lite' , 'note', 'kamera', 'güvenlik', 'gb', 'pencil' , 'pencıl' , 'kalem', 'ödeal', 'odeal',
+                        'stand', 'masaüstü' , 'base']
             truefalselist = [word in title.lower() for word in badwords]
             flagged_as_bad = any(truefalselist)
             # Filter products based on price and title
